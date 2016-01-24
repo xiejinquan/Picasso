@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private List<Pic> mDatas;
-    private JesseAdapter<Pic> mAdapter;
+    private List<Picture> mDatas;
+    private JesseAdapter<Picture> mAdapter;
     private Context mContext=this;
     private Context mTag=mContext;
     @Override
@@ -54,16 +54,17 @@ public class MainActivity extends AppCompatActivity {
         /** setLayoutManager设置Recyclerview的item的排列方式   true表示从end到start */
         mRecyclerview.setLayoutManager(new GridLayoutManager(this, 2));
 
-        mRecyclerview.setAdapter(mAdapter = new JesseAdapter<Pic>(this, R.layout.item_data, mDatas) {
+        mRecyclerview.setAdapter(mAdapter = new JesseAdapter<Picture>(this, R.layout.item_data, mDatas) {
             @Override
             public void onBindView(JesseHolder holder, int position) {
                 ImageView iv_data = holder.getView(R.id.iv_data);
+
                 // Get the image URL for the current position.
                 String url = mDatas.get(position).getImg();
                 // Trigger the download of the URL asynchronously into the image view.
                 Picasso.with(mContext)
                         .load(url)
-                        .placeholder(R.mipmap.placeholder)//默认显示
+                        .placeholder(R.mipmap.placeholder) //默认显示
                         .error(R.mipmap.ic_launcher)//加载错误显示
                         .fit()//将placeholder高宽作为显示的高宽
                         .tag(mTag)//设tag，解决错位
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     String[] urls={
             "https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/image/h%3D200/sign=3c03a127ca177f3e0f34fb0d40ce3bb9/faedab64034f78f01afda9627a310a55b2191ca8.jpg",
             "https://ss0.baidu.com/7Po3dSag_xI4khGko9WTAnF6hhy/image/h%3D200/sign=4b43caf593dda144c5096bb282b6d009/574e9258d109b3dedb168a8ec8bf6c81810a4cae.jpg",
@@ -121,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
     private void initDatas() {
         mDatas=new ArrayList<>();
         for (int i=0;i<urls.length;i++){
-            mDatas.add(new Pic("jesse"+i,urls[i]));
+            mDatas.add(new Picture("jesse"+i,urls[i]));
         }
     }
 
