@@ -3,4 +3,4 @@ Picasso结合RecyclerView
 
 ### 博客地址：http://blog.csdn.net/xiejinquan_/article/details/50565152
 
-![](https://github.com/guodongxiaren/ImageCache/raw/master/app.gif)
+![](https://github.com/xiejinquan/Picasso/raw/master/app.gif)
